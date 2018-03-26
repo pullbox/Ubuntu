@@ -1,4 +1,5 @@
 ---
+- src: geerlingguy.java
 - src: geerlingguy.firewall
 - src: geerlingguy.ntp
 - src: geerlingguy.repo-epel

@@ -7,3 +7,4 @@ up.log
 .vagrant
 roles/*
 provisioning/playbook.retry
+*.log

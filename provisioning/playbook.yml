@@ -4,16 +4,30 @@
 # copied from Geerling
 
 - hosts: ubuntulamp
-  gather_facts: yes
+  become: true
+  gather_facts: false
+  pre_tasks:
+  - name: installing repo for Java 8 in Ubuntu
+    apt_repository: repo='ppa:openjdk-r/ppa'
+  - name: Install python2 for Ansible
+    raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
+    register: output
+    changed_when: output.stdout != ""
+  - name: Gathering Facts
+    setup:
 
   vars_files:
     - vars/main.yml
 
   roles:
-    - geerlingguy.firewall
-    - geerlingguy.ntp
-    - geerlingguy.mysql
-    - geerlingguy.apache
-    - geerlingguy.php
-    - geerlingguy.php-mysql
-    - Stouts.grafana
+    - role: roles/geerlingguy.java
+      when: "ansible_os_family == 'Debian'"
+      java_packages:
+        - openjdk-8-jdk
+    - roles/geerlingguy.firewall
+    - roles/geerlingguy.ntp
+    - roles/geerlingguy.mysql
+    - roles/geerlingguy.apache
+    - roles/geerlingguy.php
+    - roles/geerlingguy.php-mysql
+    - roles/Stouts.grafana
