@@ -12,28 +12,28 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
   config.ssh.insert_key = false
 
 
 
   config.vm.provider "virtualbox" do |v|
-    v.name = "ubuntu_lamp"
+    v.name = "ubuntulamp"
     v.memory = "6122"
 
     # Customize the amount of CPU’s on the VM:
     v.cpus = "4"
-    v.customize ["modifyvm", :id, "--natdnshostresolvery1", "on"]
-    v.customeze ["modifyvm", :id, "--ioapic", "on"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--ioapic", "on"]
 
   end
 
 
-  config.vm.hostname="ubuntu_lamp"
+  config.vm.hostname="ubuntulamp"
   config.vm.network :private_network, ip: "192.168.33.33"
 
   #set the name of the VM
-  config.vm.define :ubuntu_lamp do |ubuntu_lamp|
+  config.vm.define :ubuntulamp do |ubuntulamp|
   end
 
 
@@ -89,7 +89,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
     ansible.inventory_path = "provisioning/inventory"
-    ansible.sudo = true
+    ansible.become = true
   end
 
 end

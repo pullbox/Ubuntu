@@ -5,3 +5,5 @@ share/*
 up.log
 .git
 .vagrant
+roles/*
+provisioning/playbook.retry

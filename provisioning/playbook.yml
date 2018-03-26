@@ -3,7 +3,7 @@
 #
 # copied from Geerling
 
-- hosts: lamp
+- hosts: ubuntulamp
   gather_facts: yes
 
   vars_files:
@@ -16,3 +16,4 @@
     - geerlingguy.apache
     - geerlingguy.php
     - geerlingguy.php-mysql
+    - Stouts.grafana
