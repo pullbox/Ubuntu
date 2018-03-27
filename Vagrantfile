@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |v|
     v.name = "ubuntulamp"
-    v.memory = "6122"
+    v.memory = "6144"
     v.cpus = "4"
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--ioapic", "on"]
