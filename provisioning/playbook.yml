@@ -7,12 +7,14 @@
   become: true
   gather_facts: false
   pre_tasks:
-  - name: installing repo for Java 8 in Ubuntu
-    apt_repository: repo='ppa:openjdk-r/ppa'
   - name: Install python2 for Ansible
     raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
     register: output
     changed_when: output.stdout != ""
+
+  - name: installing repo for Java 8 in Ubuntu
+    apt_repository: repo='ppa:openjdk-r/ppa'
+
   - name: Gathering Facts
     setup:
 
@@ -31,3 +33,4 @@
     - roles/geerlingguy.php
     - roles/geerlingguy.php-mysql
     - roles/Stouts.grafana
+    - roles/pullb0x.overops

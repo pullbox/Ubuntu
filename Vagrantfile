@@ -13,15 +13,13 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
-  config.ssh.insert_key = false
+  #config.ssh.insert_key = false
 
 
 
   config.vm.provider "virtualbox" do |v|
     v.name = "ubuntulamp"
     v.memory = "6122"
-
-    # Customize the amount of CPU’s on the VM:
     v.cpus = "4"
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--ioapic", "on"]
